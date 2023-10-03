@@ -10,8 +10,15 @@ Any help or contributions to the project will be welcome :).
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-sunday 10, 2023
+sunday 01, 10, 2023
 
 I added to features:
 -Generate custom amount of passwords at the same time
 -Save those passwords in a txt file.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+wednesday 04, 10, 2023
+
+Changes:
+-Now you use the program from the command line using arguments. I added a documentation just executing the program or with passwd-gen.exe -h
