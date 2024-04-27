@@ -5,8 +5,8 @@
 #include <ctype.h>
 
 void generatePass(char*, int, char*);
-void displayPassword(char passwords[][100], int);
-void savePassword(char passwords[][100], int);
+void displayPassword(char **passwords, int);
+void savePassword(char **passwords, int);
 
 
 int main(int argc, char *argv[])
@@ -23,6 +23,9 @@ int main(int argc, char *argv[])
     int numero = 1;
     char archivo = 'n';
     char pass_type[5] = "";
+    for (int i = 0; i < 5; i++) {
+        pass_type[i] = 1;
+    }
     int length = 0;
     if (argc == 1){
         printf("%s", help_prompt);
@@ -75,6 +78,7 @@ int main(int argc, char *argv[])
             return 0;
         }
     }
+    printf("%s", pass_type);
     // int length;
     char run_again = '\n';
     // printf("how long do you want the password to be: ");
@@ -83,7 +87,20 @@ int main(int argc, char *argv[])
     // scanf("%s", pass_type);
     // printf("Choose the number of passwords to generate (default: 1): ");
     // scanf("%d", &numero);
-    char passwords[numero][100];
+    // char passwords[numero][100];
+    char **passwords = (char **)malloc(numero* sizeof(char*));
+    if (passwords == NULL) {
+        printf("Error: No se pudo asignar memoria para las contraseñas.\n");
+        return -1;
+    }
+
+    for (int i = 0; i < numero; i++) {
+        passwords[i] = (char *)malloc((length + 1) * sizeof(char));
+        if (passwords[i] == NULL) {
+            printf("Error: No se pudo asignar memoria para la contraseña %d. \n", i + 1);
+            return -1;
+        }
+    }
     while (run_again == '\n'){
         srand(time(NULL));
         for (int i = 0; i < numero; i++){
@@ -103,16 +120,20 @@ int main(int argc, char *argv[])
     if (tolower(archivo) == 'y'){
         savePassword(passwords, numero);
     }
+    for (int i = 0; i < numero; i++) {
+        free(passwords[i]);
+    }
+    free(passwords);
     return 0;
 }
 
 
 void generatePass(char *password, int length, char *pass_type)
 {
-    static char symbols[] = "@#+-/()[]{}$&=¿?¡!";
-    static char numbers[] = "123456789";
-    static char mayus[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    static char minus[] = "abcdefghijklmnopqrstuvwxyz";
+    static const char symbols[] = "@#+-/()[]{}$&=?!";
+    static const char numbers[] = "123456789";
+    static const char mayus[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    static const char minus[] = "abcdefghijklmnopqrstuvwxyz";
     
     char all_characters[100] = "";
 
@@ -138,7 +159,7 @@ void generatePass(char *password, int length, char *pass_type)
     password[length] = '\0';
 }
 
-void displayPassword(char passwords[][100], int numero)
+void displayPassword(char **passwords, int numero)
 {
     for (int i = 0; i < numero; i++){
         printf("password %d: %s\n",i + 1,  passwords[i]);
@@ -146,7 +167,7 @@ void displayPassword(char passwords[][100], int numero)
 }
 
 
-void savePassword(char passwords[][100], int numero)
+void savePassword(char **passwords, int numero)
 {
     FILE *archivo;
     char name[100];
