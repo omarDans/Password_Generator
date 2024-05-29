@@ -32,4 +32,13 @@ Changues:
   - The passwords matrix its initializated estatically and generates a compilation error (fixed)
   - The pass_type list filled with null values causes any function reading the variable to stop his execution everytime it gets to a "/0x00" (null) byte (fixed, filling the pass_type variable with int "1")
  
-*Now everything works as intended and this is probably the last commit i'll do to this repository, hope you enjoy it*
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+wednesday 29, 05, 2024
+
+Changues:
+- Added features:
+  - Now if you execute the program without arguments the COOLEST banner in the world will display and program options will be asked and inputed on run.
+  - print_with_delay function will display every character in a string with a delay ( looks really cool, check it out :). )
+ 
+*I know that there are a lot of problems on the program (error handling) i will be fixing it son... hope so*  
