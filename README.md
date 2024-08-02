@@ -42,3 +42,9 @@ Changues:
   - print_with_delay function will display every character in a string with a delay ( looks really cool, check it out :). )
  
 *I know that there are a lot of problems on the program (error handling) i will be fixing it son... hope so*  
+
+
+
+## OUTPUT
+
+![image](https://github.com/user-attachments/assets/ebe49799-ebce-4e93-830d-fed697a003c1)
